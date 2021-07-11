@@ -1,0 +1,2 @@
+alter table KASSA_ROUTE_STATION_LINK add constraint FK_ROUSTA_ON_STATION foreign key (STATION_ID) references KASSA_STATIONS(ID);
+alter table KASSA_ROUTE_STATION_LINK add constraint FK_ROUSTA_ON_ROUTE foreign key (ROUTE_ID) references KASSA_ROUTE(ID);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-kassa" insertBefore="administration" caption="mainMsg://menu_config.application-kassa">
+        <item screen="kassa_Stations.browse" caption="mainMsg://menu_config.kassa_Stations.browse"/>
+        <item screen="kassa_Route.browse" caption="mainMsg://menu_config.kassa_Route.browse"/>
+        <item screen="kassa_Travel.browse" caption="mainMsg://menu_config.kassa_Travel.browse"/>
+        <item screen="kassa_Ticket.browse" caption="mainMsg://menu_config.kassa_Ticket.browse"/>
+        <item screen="kassa_Passanger.browse" caption="mainMsg://menu_config.kassa_Passanger.browse"/>
+    </menu>
+</menu-config>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://routeBrowse.caption"
+        focusComponent="routesTable"
+        messagesPack="com.company.kassa.web.screens.route">
+    <data readOnly="true">
+        <collection id="routesDc"
+                    class="com.company.kassa.entity.Route">
+            <view extends="_local">
+                <property name="route_stations" view="_minimal">
+                    <property name="stationName"/>
+                </property>
+            </view>
+            <loader id="routesDl">
+                <query>
+                    <![CDATA[select e from kassa_Route e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="routesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="routesTable"
+                dataLoader="routesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="routesTable"
+                    width="100%"
+                    dataContainer="routesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="number"/>
+                <column id="transport"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="routesTable.create"/>
+                <button id="editBtn" action="routesTable.edit"/>
+                <button id="removeBtn" action="routesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

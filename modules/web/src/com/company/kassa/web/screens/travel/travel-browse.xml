@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://travelBrowse.caption"
+        focusComponent="travelsTable"
+        messagesPack="com.company.kassa.web.screens.travel">
+    <data readOnly="true">
+        <collection id="travelsDc"
+                    class="com.company.kassa.entity.Travel">
+            <view extends="_local">
+                <property name="travelPassenger" view="_minimal">
+                    <property name="lastName"/>
+                    <property name="passportSerialNum"/>
+                </property>
+                <property name="travelTickets" view="_minimal">
+                    <property name="ticketNumber"/>
+                </property>
+            </view>
+            <loader id="travelsDl">
+                <query>
+                    <![CDATA[select e from kassa_Travel e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="travelsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="travelsTable"
+                dataLoader="travelsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="travelsTable"
+                    width="100%"
+                    dataContainer="travelsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="travelPassenger"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="travelsTable.create"/>
+                <button id="editBtn" action="travelsTable.edit"/>
+                <button id="removeBtn" action="travelsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

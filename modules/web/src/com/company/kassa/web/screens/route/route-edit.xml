@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://routeEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.kassa.web.screens.route">
+    <data>
+        <instance id="routeDc"
+                  class="com.company.kassa.entity.Route">
+            <view extends="_local">
+                <property name="route_stations" view="_minimal">
+                    <property name="stationName"/>
+                </property>
+            </view>
+            <loader/>
+            <collection id="route_stationsDc" property="route_stations"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="routeDc">
+            <column width="350px">
+                <maskedField id="numberField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="number"/>
+                <lookupField id="transportField" property="transport"/>
+            </column>
+        </form>
+        <groupBox id="route_stationsBox" caption="msg://com.company.kassa.entity/Route.route_stations">
+            <table id="route_stationsTable" dataContainer="route_stationsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="stationName"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="route_stationsTable.add"/>
+                    <button action="route_stationsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,1 @@
+create unique index IDX_KASSA_ROUTE_UNIQ_NUMBER_ on KASSA_ROUTE (NUMBER_);
